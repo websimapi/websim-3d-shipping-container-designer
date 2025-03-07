@@ -20,7 +20,19 @@
             <h1>Container Designer</h1>
             
             <div class="controls-section">
-                <h2>Container Dimensions</h2>
+                <h2>
+                    <svg class="container-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="5" width="20" height="14" rx="2" stroke="#4fc3f7" stroke-width="2"/>
+                        <line x1="2" y1="9" x2="22" y2="9" stroke="#4fc3f7" stroke-width="2"/>
+                        <line x1="12" y1="9" x2="12" y2="19" stroke="#4fc3f7" stroke-width="2"/>
+                    </svg>
+                    Container Dimensions
+                </h2>
+                
+                <div class="container-preview" id="container-preview">
+                    <div style="color: #b0bec5;">No containers added yet</div>
+                </div>
+                
                 <div class="control-group">
                     <label for="container-type">Standard Size:</label>
                     <select id="container-type">
@@ -50,17 +62,48 @@
                     <label for="container-color">Color:</label>
                     <input type="color" id="container-color" value="#2980b9">
                 </div>
+                
+                <button id="add-container">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <path d="M12 4V20M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Add Container
+                </button>
             </div>
             
             <div class="controls-section">
-                <h2>Container Actions</h2>
-                <button id="add-container">Add Container</button>
-                <button id="duplicate-container">Duplicate Selected</button>
-                <button id="remove-container">Remove Selected</button>
+                <h2>
+                    <svg class="container-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 8L16 16M16 8L8 16" stroke="#4fc3f7" stroke-width="2" stroke-linecap="round"/>
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#4fc3f7" stroke-width="2"/>
+                    </svg>
+                    Container Actions
+                </h2>
+                <div class="action-group">
+                    <button id="duplicate-container">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                            <rect x="8" y="8" width="12" height="12" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 8V5C16 4.44772 15.5523 4 15 4H5C4.44772 4 4 4.44772 4 5V15C4 15.5523 4.44772 16 5 16H8" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Duplicate
+                    </button>
+                    <button id="remove-container" class="btn-danger">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                            <path d="M4 7H20M10 11V17M14 11V17M5 7L6 19C6 20.1046 6.89543 21 8 21H16C17.1046 21 18 20.1046 18 19L19 7M15 7V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Remove
+                    </button>
+                </div>
             </div>
             
             <div class="controls-section">
-                <h2>Selected Container</h2>
+                <h2>
+                    <svg class="container-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="3" stroke="#4fc3f7" stroke-width="2"/>
+                        <path d="M12 5V3M12 21V19M5 12H3M21 12H19" stroke="#4fc3f7" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Selected Container
+                </h2>
                 <div id="selected-container-info">
                     <p>No container selected</p>
                 </div>
@@ -85,22 +128,82 @@
             </div>
             
             <div class="controls-section">
-                <h2>Design Tools</h2>
-                <button id="stack-containers">Auto Stack</button>
-                <button id="align-containers">Auto Align</button>
-                <button id="check-collisions">Check Collisions</button>
-                <button id="generate-report">Generate Report</button>
+                <h2>
+                    <svg class="container-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3V7M8 5L12 9L16 5M3 12H7M5 8L9 12L5 16M12 21V17M8 19L12 15L16 19M21 12H17M19 8L15 12L19 16" stroke="#4fc3f7" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Design Tools
+                </h2>
+                <div class="action-group">
+                    <button id="stack-containers" class="btn-success">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                            <rect x="5" y="14" width="14" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="8" y="8" width="8" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="10" y="3" width="4" height="5" rx="1" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Auto Stack
+                    </button>
+                    <button id="align-containers" class="btn-success">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                            <rect x="3" y="6" width="18" height="4" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="14" width="18" height="4" rx="1" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Auto Align
+                    </button>
+                </div>
+                <button id="check-collisions">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <path d="M12 4V4C8.22876 4 6.34315 4 5.17157 5.17157C4 6.34315 4 8.22876 4 12V12C4 15.7712 4 17.6569 5.17157 18.8284C6.34315 20 8.22876 20 12 20V20C15.7712 20 17.6569 20 18.8284 18.8284C20 17.6569 20 15.7712 20 12V12C20 8.22876 20 6.34315 18.8284 5.17157C17.6569 4 15.7712 4 12 4Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M15 9L9 15M9 9L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Check Collisions
+                </button>
+                <button id="generate-report">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;">
+                        <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M7 7H17M7 12H17M7 17H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Generate Report
+                </button>
             </div>
         </div>
         
         <div class="main-content">
             <div id="scene-container"></div>
             <div class="scene-controls">
-                <button id="view-top">Top</button>
-                <button id="view-front">Front</button>
-                <button id="view-side">Side</button>
-                <button id="view-iso">Isometric</button>
-                <button id="toggle-grid">Toggle Grid</button>
+                <button id="view-top">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+                        <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                    </svg>
+                    Top
+                </button>
+                <button id="view-front">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+                        <rect x="5" y="5" width="14" height="14" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Front
+                </button>
+                <button id="view-side">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+                        <rect x="5" y="5" width="14" height="14" stroke="currentColor" stroke-width="2"/>
+                        <path d="M9 5L5 9M13 5L5 13M17 5L5 17M21 5L5 21M21 9L13 17M21 13L17 17" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                    Side
+                </button>
+                <button id="view-iso">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+                        <path d="M12 4L4 8L12 12L20 8L12 4Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M4 8V16L12 20M20 8V16L12 20" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Isometric
+                </button>
+                <button id="toggle-grid">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+                        <path d="M4 4H20M4 4V20M4 4L20 20M20 4V20M20 4L4 20M20 20H4" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Toggle Grid
+                </button>
             </div>
         </div>
     </div>

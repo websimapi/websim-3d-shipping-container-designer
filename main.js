@@ -190,6 +190,8 @@ class ContainerDesigner {
         // Check for collisions
         this.checkCollisions();
         
+        this.updateContainerPreview();
+        
         return container;
     }
     
@@ -239,6 +241,8 @@ class ContainerDesigner {
         this.selectedContainer = null;
         document.getElementById('selected-container-info').innerHTML = '<p>No container selected</p>';
         document.getElementById('position-controls').classList.add('hidden');
+        
+        this.updateContainerPreview();
     }
     
     selectContainer(container) {
@@ -281,6 +285,8 @@ class ContainerDesigner {
             document.getElementById('position-controls').classList.add('hidden');
             this.transformControls.detach();
         }
+        
+        this.updateContainerPreview();
     }
     
     updatePositionInputs(container) {
@@ -621,10 +627,63 @@ class ContainerDesigner {
         document.getElementById('modal-body').innerHTML = content;
         document.getElementById('modal').classList.remove('hidden');
     }
+    
+    updateContainerPreview() {
+        const preview = document.getElementById('container-preview');
+        if (!preview) return;
+        
+        // Clear previous content
+        preview.innerHTML = '';
+        
+        if (this.containers.length === 0) {
+            preview.innerHTML = '<div style="color: #b0bec5;">No containers added yet</div>';
+            return;
+        }
+        
+        // Create a simple SVG representation of the containers
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.setAttribute('viewBox', '0 0 100 60');
+        
+        // Draw a representation of all containers (simple version)
+        this.containers.forEach((container, index) => {
+            if (index > 4) return; // Show only first 5 containers
+            
+            const { color } = container.userData;
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', 10 + (index * 15));
+            rect.setAttribute('y', 15);
+            rect.setAttribute('width', 15);
+            rect.setAttribute('height', 30);
+            rect.setAttribute('fill', color);
+            rect.setAttribute('stroke', '#fff');
+            rect.setAttribute('stroke-width', '1');
+            
+            if (container === this.selectedContainer) {
+                rect.setAttribute('stroke', '#ff0');
+                rect.setAttribute('stroke-width', '2');
+            }
+            
+            svg.appendChild(rect);
+        });
+        
+        if (this.containers.length > 5) {
+            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', '85');
+            text.setAttribute('y', '35');
+            text.setAttribute('fill', '#fff');
+            text.setAttribute('font-size', '12');
+            text.textContent = '+' + (this.containers.length - 5);
+            svg.appendChild(text);
+        }
+        
+        preview.appendChild(svg);
+    }
+
 }
 
 // Initialize the application when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ContainerDesigner();
 });
-
