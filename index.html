@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Shipping Container Designer</title>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/",
+                "stats": "https://cdn.jsdelivr.net/npm/stats.js@0.17.0/build/stats.min.js"
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Container Designer</h1>
+            
+            <div class="controls-section">
+                <h2>Container Dimensions</h2>
+                <div class="control-group">
+                    <label for="container-type">Standard Size:</label>
+                    <select id="container-type">
+                        <option value="20ft">20ft Standard</option>
+                        <option value="40ft">40ft Standard</option>
+                        <option value="40ftHC">40ft High Cube</option>
+                        <option value="custom">Custom Size</option>
+                    </select>
+                </div>
+                
+                <div id="custom-dimensions" class="hidden">
+                    <div class="control-group">
+                        <label for="length">Length (m):</label>
+                        <input type="number" id="length" min="1" max="20" value="6.06" step="0.01">
+                    </div>
+                    <div class="control-group">
+                        <label for="width">Width (m):</label>
+                        <input type="number" id="width" min="1" max="5" value="2.44" step="0.01">
+                    </div>
+                    <div class="control-group">
+                        <label for="height">Height (m):</label>
+                        <input type="number" id="height" min="1" max="5" value="2.59" step="0.01">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="container-color">Color:</label>
+                    <input type="color" id="container-color" value="#2980b9">
+                </div>
+            </div>
+            
+            <div class="controls-section">
+                <h2>Container Actions</h2>
+                <button id="add-container">Add Container</button>
+                <button id="duplicate-container">Duplicate Selected</button>
+                <button id="remove-container">Remove Selected</button>
+            </div>
+            
+            <div class="controls-section">
+                <h2>Selected Container</h2>
+                <div id="selected-container-info">
+                    <p>No container selected</p>
+                </div>
+                <div id="position-controls" class="hidden">
+                    <div class="control-group">
+                        <label for="position-x">X Position (m):</label>
+                        <input type="number" id="position-x" step="0.1" value="0">
+                    </div>
+                    <div class="control-group">
+                        <label for="position-y">Y Position (m):</label>
+                        <input type="number" id="position-y" step="0.1" value="0">
+                    </div>
+                    <div class="control-group">
+                        <label for="position-z">Z Position (m):</label>
+                        <input type="number" id="position-z" step="0.1" value="0">
+                    </div>
+                    <div class="control-group">
+                        <label for="rotation-y">Rotation (°):</label>
+                        <input type="number" id="rotation-y" step="90" value="0" min="0" max="270">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls-section">
+                <h2>Design Tools</h2>
+                <button id="stack-containers">Auto Stack</button>
+                <button id="align-containers">Auto Align</button>
+                <button id="check-collisions">Check Collisions</button>
+                <button id="generate-report">Generate Report</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div id="scene-container"></div>
+            <div class="scene-controls">
+                <button id="view-top">Top</button>
+                <button id="view-front">Front</button>
+                <button id="view-side">Side</button>
+                <button id="view-iso">Isometric</button>
+                <button id="toggle-grid">Toggle Grid</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title">Container Report</h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
